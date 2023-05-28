@@ -1,0 +1,98 @@
+:root{
+    --boardCellSize: 140px;
+    --colorPrimary:rgb(32, 44, 55);
+    --colorPrimaryText: #fefefe;
+    --colorBg: rgb(205, 208, 209);
+}   
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--colorBg);
+    
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header,footer {
+    height: 10vh;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    background-color: var(--colorPrimary);
+    color: var(--colorPrimaryText);
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+main {
+    flex-grow: 1;
+    width: 80vw;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 5px;
+}
+
+#board-container {
+    height: calc(3 * var(--boardCellSize)); 
+    width: calc(3 * var(--boardCellSize));
+    margin: 0 auto;
+    
+    display: grid;
+    grid-template: repeat(3,1fr) / repeat(3,1fr) ;
+}
+
+.board-cell {
+    border: 1px solid gray;
+    font-size: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+}
+
+/* -----Remove outer borders from game board */
+.board-cell[data-x="0"] {
+    border-top: none;
+}
+.board-cell[data-x="2"] {
+    border-bottom: none;
+}
+.board-cell[data-y="0"] {
+    border-left: none;
+}
+.board-cell[data-y="2"] {
+    border-right: none;
+}
+/* ---- */
+
+/* Reset button styling */
+.btn.reset {
+    background-color: var(--colorPrimary);
+    color: var(--colorPrimaryText);
+
+    width: 300px;
+    padding: 1em 2em;
+    margin: 0 auto;
+
+    border-radius: 5px;
+    cursor: pointer;
+}
+.btn.reset:hover{
+    opacity: 0.9;
+}

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
@@ -15,24 +15,23 @@
 
     <main>
         <!-- Game board dispaly -->
-        <div class="message">Player X's turn</div>
+        <div id="message">Player X's turn</div>
         <div id="board-container">
-                <div class="board-cell" data-x="0" data-y="0"></div>
-                <div class="board-cell" data-x="0" data-y="1"></div>
-                <div class="board-cell" data-x="0" data-y="2"></div>
-                <div class="board-cell" data-x="1" data-y="0"></div>
-                <div class="board-cell" data-x="1" data-y="1"></div>
-                <div class="board-cell" data-x="1" data-y="2"></div>
-                <div class="board-cell" data-x="2" data-y="0"></div>
-                <div class="board-cell" data-x="2" data-y="1"></div>
-                <div class="board-cell" data-x="2" data-y="2"></div>
+            <div class="board-cell" data-idx="0"></div>
+            <div class="board-cell" data-idx="1"></div>
+            <div class="board-cell" data-idx="2"></div>
+            <div class="board-cell" data-idx="3"></div>
+            <div class="board-cell" data-idx="4"></div>
+            <div class="board-cell" data-idx="5"></div>
+            <div class="board-cell" data-idx="6"></div>
+            <div class="board-cell" data-idx="7"></div>
+            <div class="board-cell" data-idx="8"></div>
         </div>
-        <button class="btn reset">Reset</button>
+        <button id="reset-button" class="btn">Play Again</button>
     </main>
 
     <footer>
         <p>Copyright © 2023 tono0682</p>
-        <i class="fa-github"></i>
     </footer>
 </body>
 </html>

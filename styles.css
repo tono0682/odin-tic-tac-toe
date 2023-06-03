@@ -1,13 +1,14 @@
 :root{
     --boardCellSize: 140px;
+    --markerSize: calc(var(--boardCellSize) * 0.9 );
     --colorPrimary:rgb(32, 44, 55);
     --colorPrimaryText: #fefefe;
     --colorBg: rgb(205, 208, 209);
 }   
 
-* {
-    margin: 0;
-    padding: 0;
+*,
+*::after, 
+*::before {
     box-sizing: border-box;
 }
 
@@ -16,8 +17,9 @@ html {
 }
 
 body {
+    margin: 0;
     background-color: var(--colorBg);
-    
+    min-width: 600px;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -25,17 +27,20 @@ body {
     justify-content: space-between;
 }
 
-header,footer {
-    height: 10vh;
+
+header, footer {
+    height: 5em;
     width: 100%;
-    padding: 10px;
     text-align: center;
     background-color: var(--colorPrimary);
     color: var(--colorPrimaryText);
-    
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+h1 {
+    font-size: 3em;
 }
 
 main {
@@ -43,46 +48,110 @@ main {
     width: 80vw;
     text-align: center;
 
-    display: flex;
+    /* display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    gap: 5px;
+    justify-content: center */
+
+    display: grid;
+    grid-template-rows: 1fr auto 1.5fr;
+    align-items: center;
+
+}
+
+#message {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--colorPrimary);
 }
 
 #board-container {
+    justify-self: center;
     height: calc(3 * var(--boardCellSize)); 
     width: calc(3 * var(--boardCellSize));
     margin: 0 auto;
-    
     display: grid;
-    grid-template: repeat(3,1fr) / repeat(3,1fr) ;
+    grid-template-columns: repeat(3,auto);
+    justify-content: center;
+    align-items: center;
+
 }
 
 .board-cell {
-    border: 1px solid gray;
-    font-size: 2em;
+    height: var(--boardCellSize);
+    width: var(--boardCellSize);
+    background-color: var(--colorBg);
+    border: 1px solid black;
     display: flex;
     justify-content: center;
-    align-items: center;  
+    align-items: center;
+    position: relative;
+    cursor: pointer;
 }
 
-/* -----Remove outer borders from game board */
-.board-cell[data-x="0"] {
+.board-cell:nth-child(-n+3){
     border-top: none;
 }
-.board-cell[data-x="2"] {
+.board-cell:nth-last-child(-n+3){
     border-bottom: none;
 }
-.board-cell[data-y="0"] {
+.board-cell:nth-child(3n+1){
     border-left: none;
 }
-.board-cell[data-y="2"] {
+.board-cell:nth-child(3n){
     border-right: none;
 }
-/* ---- */
+
+/* markers */
+.board-cell.x,
+.board-cell.o {
+    cursor: not-allowed;
+}
+
+/* x marker */
+.board-cell.x::before,
+.board-cell.x::after {
+    content: '';
+    width: calc(var(--markerSize)* 0.15);
+    height: var(--markerSize);
+    background-color: black;
+    position: absolute;
+}
+.board-cell.x::before {
+    transform: rotate(45deg);
+}
+.board-cell.x::after {
+    transform: rotate(-45deg);
+}
+
+/* o marker */
+.board-cell.o::before,
+.board-cell.o::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+}
+.board-cell.o::before{
+    width: var(--markerSize);
+    height: var(--markerSize);
+    background-color: black;
+}
+.board-cell.o::after{
+    width: calc(var(--markerSize) * 0.7);
+    height: calc(var(--markerSize) * 0.7);
+    background-color: var(--colorBg);
+}
+
+
+.board-cell.x::before {
+    transform: rotate(45deg);
+}
+.board-cell.x::after {
+    transform: rotate(-45deg);
+}
 
 /* Reset button styling */
-.btn.reset {
+.btn {
+    display: none;
     background-color: var(--colorPrimary);
     color: var(--colorPrimaryText);
 
@@ -93,6 +162,10 @@ main {
     border-radius: 5px;
     cursor: pointer;
 }
-.btn.reset:hover{
+.btn.show {
+    display: block
+
+}
+.btn.show:hover{
     opacity: 0.9;
 }
